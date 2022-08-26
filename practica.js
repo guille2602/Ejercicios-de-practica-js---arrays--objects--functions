@@ -510,20 +510,35 @@ function longitudArreglo(array) {
 
 // 3) quiero saber si en los arreglos está mi nombre y mi apellido
 
-function findName (search, nombres) {
-    for (const nombre of nombres) {
-        let existe = nombre.includes(search);
-        if (existe) {
-            console.log('Tu nombre existe');
-        } else {
-            console.log('Tu nombre no existe');
+function findName (search, array) {
+    let encontrado = false;
+    for (const nombre of array) {
+        if (nombre.includes(search)) {
+            console.log('Existe');
+            encontrado = true;
+            break;
         }
-    }
+    } return encontrado;
 }
 
 // 4) crear una función para verificar si un nombre existe o un apellido existe dentro del arreglo
 
-
+function nombreyApellido () {
+    let name = prompt('Ingrese el nombre a buscar');
+    let found = findName (name, nombres);
+    if (found) {
+        alert('Nombre encontrado')
+    } else {
+        alert('Nombre no encontrado')
+    }
+    let surname = prompt('Ingrese el apellido a buscar');
+    found = findName (surname, apellidos);
+    if (found) {
+        alert('Apellido encontrado')
+    } else {
+        alert('Apellido no encontrado')
+    }
+}
 
 // 5) crear una función que inserte un nuevo nombre y otra para que inserte un nuevo apellido
 
