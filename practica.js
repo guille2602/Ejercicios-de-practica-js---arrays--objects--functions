@@ -501,58 +501,80 @@ const nombres = [
 
 // 1) crear una función que me retorne la longitud de un arreglo ingresado como parámetro
 
-function longitudArreglo(array) {
-    let long = array.length;
-    return long;
-}
+function longitudArreglo(array) {return array.length};
 
 // 2) quiero conocer el número de elementos de los arreglos de nombres y apellidos
 
+    console.log(longitudArreglo(nombres) + longitudArreglo(apellidos));
+
 // 3) quiero saber si en los arreglos está mi nombre y mi apellido
 
-function findName (search, array) {
-    let encontrado = false;
-    for (const nombre of array) {
-        if (nombre.includes(search)) {
-            console.log('Existe');
-            encontrado = true;
-            break;
-        }
-    } return encontrado;
-}
+    if (nombres.find((nombre) => nombre == 'Guillermo')) {console.log('Aparece')} else {console.log('No aparece')};
+    if (apellidos.find((apellido) => apellido == 'Alfaro')) {console.log('Aparece')} else {console.log('No aparece')};
 
 // 4) crear una función para verificar si un nombre existe o un apellido existe dentro del arreglo
 
-function nombreyApellido () {
-    let name = prompt('Ingrese el nombre a buscar');
-    let found = findName (name, nombres);
-    if (found) {
-        alert('Nombre encontrado')
-    } else {
-        alert('Nombre no encontrado')
+    function existe (search, array) {
+        if (array.find((x) => x == search)) {return true} else {return false};
     }
-    let surname = prompt('Ingrese el apellido a buscar');
-    found = findName (surname, apellidos);
-    if (found) {
-        alert('Apellido encontrado')
-    } else {
-        alert('Apellido no encontrado')
-    }
-}
 
 // 5) crear una función que inserte un nuevo nombre y otra para que inserte un nuevo apellido
 
+    function pushName (name) {nombres.push(name)};
+    function pushSurname (surname) {apellidos.push(surname)};
+
 // 6) crear una función para que me inserte el nombre o el apellido después de verificar que no exista
+
+    function pushIfInexistent(text, array) {
+        if (!existe(text, array)){array.push(text)};
+    }
 
 // 7) crear una función que me elija aleatoriamente un nombre y un apellido y me retorne el nombre conformado
 
+    function randomPeopleGenerator () {
+        const fullName = nombres[Math.round(Math.random() * (nombres.length - 1))] + " " + 
+        apellidos[Math.round(Math.random() * (apellidos.length - 1))];
+        return fullName;
+    } 
+
 // 8) crear una función que me retorne el arreglo de nombres y otra para apellidos ordenado alfabéticamente
+
+    function sortArray (array, sort) {
+        array.sort((x,y) => sort(x,y));
+    }
+
+    function sortAscendent (a,b) {
+        if (a > b) {return 1}
+        else if (a < b) {return -1}
+        else {return 0}
+}
+
+    sortArray(nombres,sortAscendent);
+    sortArray(apellidos,sortAscendent);
 
 // 9) crear una función que me retorne el arreglo de nombres y otra para apellidos ordenado por la cantidad de letras de menor a mayor
 
+    function sortByLength (a,b) {
+            if (a.length > b.length) {return 1}
+            else if (a.length < b.length) {return -1}
+            else {return 0}
+    }
+
+    sortArray(nombres,sortByLength);
+    sortArray(apellidos,sortByLength);
+    
 // 9) crear una función que me busque una cadena de texto ingresada tanto en los nombres como en los apellidos y me diga cuántos elementos dieron match con esa búsqueda
 
+    function searchString (searchItem) {
+        let counter = 0;
+        nombres.forEach((x) => {if (x.includes(searchItem)) {counter += 1}}); 
+        apellidos.forEach((x) => {if (x.includes(searchItem)) {counter += 1}}); 
+        return counter;
+    }
+
 // 10) crear una función que solo retorne los elementos en nombres y apellidos que tengan por lo menos una 'a'
+
+    
 
 // 11) crear una función que retorne la suma de la cantidad de letras de todos los nombres y otra para los apellidos
 
