@@ -574,11 +574,21 @@ function longitudArreglo(array) {return array.length};
 
 // 10) crear una función que solo retorne los elementos en nombres y apellidos que tengan por lo menos una 'a'
 
-    
+    function filterElements () {
+        const nombresConA = nombres.filter((nombre) => nombre.includes('a'));
+        const apellidosConA = apellidos.filter((apellido) => apellido.includes('a'));
+        console.log(nombresConA, apellidosConA)
+    }
 
 // 11) crear una función que retorne la suma de la cantidad de letras de todos los nombres y otra para los apellidos
 
+    let counterApellido = counterNombre = 0;
+    apellidos.forEach((apellido) => counterApellido += apellido.length);
+    nombres.forEach((nombre) => counterNombre += nombre.length);
+
 // 12) crear una clase Jugador que tenga propiedades id, nombre, apellido, creadoEn, actualizadoEn
+
+    
 
 // 13) crear un objeto con el nombre y apellido generado aleatoriamente y siendo creadoEn y actualizadoEn fechas que indican en qué momento el objeto fue creado y actualizado. id debe ser un identificador numérico único
 
