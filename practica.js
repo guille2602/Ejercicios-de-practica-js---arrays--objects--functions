@@ -501,7 +501,7 @@ const nombres = [
 
 // 1) crear una función que me retorne la longitud de un arreglo ingresado como parámetro
 
-function longitudArreglo(array) {return array.length};
+    function longitudArreglo(array) {return array.length};
 
 // 2) quiero conocer el número de elementos de los arreglos de nombres y apellidos
 
@@ -531,7 +531,7 @@ function longitudArreglo(array) {return array.length};
 
 // 7) crear una función que me elija aleatoriamente un nombre y un apellido y me retorne el nombre conformado
 
-    function randomPeopleGenerator () {
+    function randomPeopleGenerator() {
         const fullName = nombres[Math.round(Math.random() * (nombres.length - 1))] + " " + 
         apellidos[Math.round(Math.random() * (apellidos.length - 1))];
         return fullName;
@@ -588,10 +588,38 @@ function longitudArreglo(array) {return array.length};
 
 // 12) crear una clase Jugador que tenga propiedades id, nombre, apellido, creadoEn, actualizadoEn
 
-    
+    class Jugador {
+        constructor (id, nombre, apellido, creadoEn, actualizadoEn){
+            this.id = id;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.creadoEn = creadoEn;
+            this.actualizadoEn = actualizadoEn;
+        }
+    }
 
-// 13) crear un objeto con el nombre y apellido generado aleatoriamente y siendo creadoEn y actualizadoEn fechas que indican en qué momento el objeto fue creado y actualizado. id debe ser un identificador numérico único
+// 13) crear un objeto con el nombre y apellido generado aleatoriamente y siendo creadoEn y actualizadoEn fechas que indican 
+//en qué momento el objeto fue creado y actualizado. id debe ser un identificador numérico único
+
+    function createRandomPlayer(id) {
+        const name = nombres[Math.round(Math.random() * (nombres.length - 1))];
+        const surname = apellidos[Math.round(Math.random() * (apellidos.length - 1))];
+        const player = new Jugador (id, name, surname, new Date(Date.now()).toLocaleDateString(), new Date(Date.now()).toLocaleDateString());
+        const hoy = new Date(Date.now());
+        return player;
+    }
 
 // 14) crear 10 objetos Jugador
+    function create10Players(cant = 10) {
+        let arrayOfPlayers = [];
+        for (i = 1; i <= cant; i++) {
+            arrayOfPlayers.push(createRandomPlayer(i));
+        }
+        return arrayOfPlayers
+    }
 
 // 15) crear una función que me retorne solamente el id y el nombre completo de los jugadores creados
+
+    function returnPlayersId (players) {
+        const playersId = players.forEach((player) => console.log(player.id + ', ' + player.nombre + ', ' + player.apellido));
+    }    
